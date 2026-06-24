@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Miguel Fernandes Silva">
+    <meta name="description" content="Sobre o Ecommerce Sweet Crafter">
+    <meta name="keywords" content="Sobre, História, Informações">
+    <title> Sweet Crafter | Sobre Nós </title>
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="icon" type="image/png" href="/src/assets/logos/favicon_io/favicon-32x32.png">
+    <style>
+        #container{
+            display: flex;
+            padding: 0 30px;
+        }
+
+        /* CONTEÚDO */
+        .content-container{
+            width: 100%;
+            margin-top: 20px;
+            text-align: justify;
+        }
+        .content-container h1{
+            font-family: var(--title);
+            color: var(--light_red);
+            font-size: 35px;
+        }
+        .content-container h2{
+            font-size: 25px;
+            font-family: var(--subtitle);
+            color: var(--dark_red);
+        }
+
+        .description{
+            width: 70%;
+            color: var(--black);
+            font-family: var(--text);
+            margin-bottom: 20px;
+        }
+
+        /* ASIDE */
+        .aside{
+            display: flex;
+            max-height: 550px;
+            gap: 5px;
+        }
+        /* Imagem */
+        .image-container{
+            max-height: 480px;
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .image-banner{
+            height: 480px;
+            border-radius: 20px;
+        }
+        .sobreposition{
+            position: absolute;
+            top: 20%;
+            right: 25%;
+        }
+        .sobreposition img{
+            height: 200px;
+        }
+        .sobreposition p, .sobreposition span{
+            font-family: var(--title);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .sobreposition p{
+            color: var(--background3);
+        }
+        .sobreposition span{
+            color: var(--dark_red);
+        }
+
+        /* Banner Vertical */
+        .aside-container{
+            height: fit-content;
+            padding: 20px;
+            border-radius: 20px;
+            background: var(--background2);
+            box-shadow: 3px 5px 10px rbga(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .box{
+            color: var(--light_red);
+            font-size: 30px;
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+        .line1, .line2{
+            font-family: var(--text);
+            font-size: 15px !important;
+            color: var(--black) !important;
+        }
+        .line1{
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- HEADER SUPERIOR -->
+        <div class="sup-header">
+            <div></div>
+            <div class="sup-header-center">
+                <h1 aria-label="Sweet Crafter" translate="no"> Sweet Crafter </h1>
+            </div>
+            <div class="sup-header-right">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-gear"></i>
+                        <a href="/src/html/settings.html" aria-label="Configurações"> Configurações </a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-user"></i>
+                        <a href="/src/html/login.html" aria-label="Sua Conta" id="accountLink"> Sua Conta </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- HEADER INFERIOR -->
+        <div class="sub-header">
+        <nav>
+            <div class="logo-container">
+                <img src="/src/assets/logos/Logomarca.png" alt="Sweet Crafter Logo" title="Sweet Crafter Logo">
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="/src/html/index.html" aria-label="Início"> Início </a>
+                </li>
+
+                <!-- Lista Dropdown -->
+                <li id="dropdown-wrapper">
+                    <span class="dropdown-gate" id="dropdownGate" aria-label="Doces"> Doces </span>
+                    <div class="dropdown-container" id="dropdown">
+                        <div>
+                            <ul>
+                                <li> Bolos </li>
+                                <li> Brigadeiros </li>
+                                <li> Tortas </li>
+                                <li> Pudim </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul>
+                                <li> Brownie </li>
+                                <li> Sorvetes </li>
+                                <li> Copo da Felicidade </li>
+                                <li> Biscoitos </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/src/html/orders.html" aria-label="Pedidos"> Pedidos </a>
+                </li>
+                <li>
+                    <a href="/src/html/abbout.html" class="active-page" aria-label="Sobre Nós"> Sobre Nós </a>
+                </li>
+                <li> 
+                    <a href="/src/html/contact.html" aria-label="Contatos"> Contatos </a>
+                </li>
+            </ul>
+
+        <!-- Barra de Pesquisa -->
+        <div class="search-bar-container">
+            <input type="text" class="search-bar" id="searchBar" autocomplete="off" spellcheck="off" aria-label="Barra de Pesquisa"  placeholder="Pesquise por Doces... ">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+
+        <div class="icons-container">
+            <ul>
+                <li>
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                </li>
+                <li>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-index"> 0 </span>   
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <!-- Caminho da Pag -->
+    <div class="path-container">
+        <a href="/src/html/index.html" target="_self" class="path"> Início </a>
+        <p class="path"> > </p>
+        <a href="#" target="_self" class="path" style="color: #8D535A"> Sobre Nós </a>
+    </div>
+    
+    <main>
+        <section id="container">
+            <!-- CONTEÚDO -->
+            <article class="content-container">
+                <h1> Sobre Nós </h1>
+                <h2> Pensada com Amor, Para Adoçar Momentos. </h2>
+                <br>
+                <div class="description">
+                <p>
+                    A <strong> Sweet Crafter </strong> nasceu a partir da visão do povo em seu amor por doces e na falta de possibilidades e variações.
+                    Por que sempre comer os mesmos bolos, brigadeiros, tortas, e tudo mais?
+                </p>
+                <br>
+                <p>
+                    Pensando nisto, a <strong> Sweet Crafter </strong> surgiu como uma forma de expandir os horizontes culinários, fugindo da rotina de 
+                    paladar dos clientes e da rotina de confeitaria dos confeiteiros especializados espalhados por todo o Brasil.
+                </p>
+                <br>
+                <p>
+                    A <strong> Sweet Crafter </strong> vai muito além de te dar a possibilidade de encomendar o seu próprio doce. Ela permite soltar a 
+                    criatividade, realizar sonhos e vontades e criar vinculos entre famílias e amigos.
+                </p>
+            </div>
+            </article>
+            <div></div>
+
+            <!-- ASIDE -->
+            <div class="aside">
+                <div class="image-container">
+                    <img class="image-banner" src="/src/assets/content/Aside Sweet Crafter.png" alt="Sweet Crafter">
+                    <div class="sobreposition">
+                        <img src="https://static.vecteezy.com/system/resources/thumbnails/068/067/457/small/two-brigadeiros-a-traditional-brazilian-chocolate-candy-are-isolated-on-transparent-background-png.png" alt="Sweet Crafter">
+                        <p> Sweet <span>Crafter</span></p>
+                    </div>
+                </div>
+
+                <!-- Banner vertical -->
+                <aside>
+                    <div class="aside-container">
+                        <div class="box">
+                            <div>
+                                <!-- Icone de Lapís -->
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </div>
+                            <div>
+                                <p class="line1"> Produtos </p>
+                                <p class="line2"> Customizaveis </p>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div>
+                                <!-- Icone de Estrela -->
+                                <i class="fa-solid fa-star"></i>
+                            </div>
+                            <div>
+                                <p class="line1"> Confeiteiros </p>
+                                <p class="line2"> Especializados </p>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <div>
+                                <!-- Icone de Nuvem -->
+                                <i class="fa-solid fa-cloud"></i>
+                            </div>
+                            <div>
+                                <p class="line1"> Sonhos </p>
+                                <p class="line2"> Realizados </p>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- BANNER (horizontal) -->
+        <section>
+            <div class="banner">
+                <div class="banner-icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <div class="banner-text">
+                    <strong> Fique por Dentro das Novidades! </strong>
+                    <p> Cadastre-se e não perca nada de novo que rolar aqui. </p>
+                </div>
+                <div class="banner-right">
+                    <input class="banner-input" id="bannerInput" type="email" placeholder="Informe seu Email" aria-label="Informe seu Email" autocomplete="off" spellcheck="false" dir="auto">
+                    <button class="banner-submit-btn"> Cadastrar </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+    <div class="footer-left">
+        <div class="footer-logo">
+            <img src="/src/assets/logos/Logotipo 2.png">
+        </div>
+        <p class="footer-description">
+            A Oportunidade Perfeita para Realizar seus Desejos Doces Mais Incríveis e Malucos!
+        </p>
+
+        <!-- Sociais -->
+        <div class="footer-socials">
+            <!-- Instagram -->
+            <div class="social-icon" onclick="socialMedia(0)">
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+
+            <!-- Facebook -->
+            <div class="social-icon" onclick="socialMedia(1)">
+                <i class="fa-brands fa-facebook-f"></i>
+            </div>
+
+            <!-- Whatsapp -->
+            <div class="social-icon" onclick="socialMedia(2)">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <!-- Email -->
+            <div class="social-icon" onclick="socialMedia(3)">
+                <i class="fa-solid fa-envelope icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Links de Contato -->
+    <div>
+        <div class="footer-links-title"> Institucional </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/abbout.html"> Sobre Nós </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Contatos </a>
+            </li>
+            <li>
+                <a href="#"> Política de Privacidade </a>
+            </li>
+            <li>
+                <a href="#"> Termos de Uso </a>
+            </li>
+            <li>
+                <a href="#"> Suporte Técnico </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Links de Ajuda -->
+    <div>
+        <div class="footer-links-title"> Ajuda </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/contact.html"> Perguntas Frequentes </a>
+            </li>
+            <li>
+                <a href="#"> Central de Reclamações </a>
+            </li>
+            <li>
+                <a href="#"> Contato com Usuários </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Fale Conosco </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer-bottom">
+        <p> © 2026 Sweet Crafter™ | Todos os Direitos Reservados </p>
+    </div>
+    </footer>
+
+    <!-- Biblioteca de Icones (Font Awesome) -->
+    <script src="https://kit.fontawesome.com/43e593e5ea.js" crossorigin="anonymous"></script>
+
+    <!-- Script Próprio -->
+    <script src="/src/js/script.js" defer></script>
+    <script src="/src/js/pages.js"></script>
+</body>
+</html>

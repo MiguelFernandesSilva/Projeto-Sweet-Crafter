@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Miguel Fernandes Silva">
+    <meta name="description" content="Página Inicial do Ecommerce">
+    <meta name="keywords" content="Cards, Produtos, Compras">
+    <title> Sweet Crafter | Home </title>
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="icon" type="image/png" href="/src/assets/logos/favicon_io/favicon-32x32.png">
+    <style>
+        /* CARROSSEL */
+        .carousel-section{
+            width: 100%;
+        }
+        .carousel{
+            width: min(90%, 1400px);
+            aspect-ratio: 16 / 9;
+            border-radius: 20px;
+            background: #000;
+            margin: auto;
+            box-shadow: 5px 10px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-track{
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* Slides */
+        .slide{
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+            position: absolute;
+        }
+        .slide.active-img{
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .slide img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Botões */
+        .carousel-btn{
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            color: var(--light_red);
+            font-size: 22px;
+            background: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 30;
+            transition: all .3s ease;
+            transform: translateY(-50%);
+            position: absolute;
+            top: 50%;
+        }
+        .carousel-btn:hover{
+            background: white;
+            transform: translateY(-50%) scale(1.08);
+        }
+        .prev{
+            left: 18px;
+        }
+        .next{
+            right: 18px;
+        }
+
+        /* Indices */
+        .carousel-dots{
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+        }
+        .dot{
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--background3);
+            cursor: pointer;
+            transition: all .3s ease;
+        }
+        .dot.active-dot{
+            background: var(--light_red);
+            transform: scale(1.2);
+        }
+
+        /* CARDS */
+        .products{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 10px 25px;
+        }
+        .title-sub{
+            margin: auto;
+            margin-bottom: 2%;
+            background: var(--light_red);
+            height: 2px;
+        }
+
+        .card{
+            height: 400px;
+            width: 250px;
+            border: 1px solid var(--black) !important;
+            border-radius: 20px;
+            background: var(--white);
+            box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            cursor: pointer;
+            transition: transform .3s ease;
+            position: relative;
+        }
+        .card:hover{
+            transform: scale(1.05);
+        }
+        .card img{
+            width: 100%;
+            height: max(50%, 200px);
+            margin: 0 auto;
+            border: 1px solid var(--black) !important;
+            border-radius: 15px;
+            z-index: 200;
+        }
+        .card-badge{
+            color: var(--white);
+            font-family: var(--text);
+            background: var(--light_red);
+            padding: 2px 8px 2px 5px;
+            border-radius: 0 10px 10px 0;
+            position: absolute;
+            top: 5%;
+            left: 0;
+        }
+
+        /* Título do Card */
+        .card h3{
+            font-family: var(--subtitle);
+            font-weight: 600;
+            color: var(--dark_red);
+            text-align: center;
+            white-space: nowrap;
+            line-height: 2;
+            cursor: default;
+        }
+
+        /* Criador do Card */
+        .card-creator{
+            text-align: left;
+            font-size: 14px !important;
+            cursor: default;
+            color: var(--light_red);
+            margin: 0 !important;
+        }
+        .card-creator span{
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: inherit;
+        }
+        /* Informações do Card */
+        .card-ingredients{
+            font-size: 16px;
+            font-family: var(--text);
+            text-align: left;
+            margin: 10px 0;
+            cursor: default;
+        }
+        .card-ingredients ul{
+            margin-left: 10%;
+            margin-top: 10px;
+        }
+
+        /* Botão de Compra */
+        .card button{
+            width: 90%;
+            height: 50px;
+            border-radius: 15px;
+            background: var(--light_red);
+            color: var(--white);
+            font-family: var(--text);
+            font-size: 15px;
+            font-weight: 550;
+            cursor: pointer;
+            margin: auto;
+            transition: all .3s ease;
+            box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.2);
+            bottom: 5%;
+            position: absolute;
+        }
+        .card button:hover{
+            background: var(--dark_red);
+        }
+
+        /* Caso esteja sem pedidos */
+        .card-section-empty h2, .card-section-empty p{
+            text-align: center;
+            font-family: var(--title);
+            font-size: 40px;
+            color: var(--dark_red);
+        }
+        .card-section-empty p{
+        font-size: 20px !important;
+        margin: 100px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- HEADER SUPERIOR -->
+        <div class="sup-header">
+            <div></div>
+            <div class="sup-header-center">
+                <h1 aria-label="Sweet Crafter" translate="no"> Sweet Crafter </h1>
+            </div>
+            <div class="sup-header-right">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-gear"></i>
+                        <a href="/src/html/settings.html" aria-label="Configurações"> Configurações </a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-user"></i>
+                        <a href="/src/html/login.html" aria-label="Sua Conta" id="accountLink"> Sua Conta </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- HEADER INFERIOR -->
+        <div class="sub-header">
+        <nav>
+            <div class="logo-container">
+                <img src="/src/assets/logos/Logomarca.png" alt="Sweet Crafter Logo" title="Sweet Crafter Logo">
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="#" class="active-page" aria-label="Início"> Início </a>
+                </li>
+
+                <!-- Lista Dropdown -->
+                <li id="dropdown-wrapper">
+                    <span class="dropdown-gate" id="dropdownGate" aria-label="Doces"> Doces </span>
+                    <div class="dropdown-container" id="dropdown">
+                        <div>
+                            <ul>
+                                <li> Bolos </li>
+                                <li> Brigadeiros </li>
+                                <li> Tortas </li>
+                                <li> Pudim </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul>
+                                <li> Brownie </li>
+                                <li> Sorvetes </li>
+                                <li> Copo da Felicidade </li>
+                                <li> Biscoitos </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/src/html/orders.html" aria-label="Pedidos"> Pedidos </a>
+                </li>
+                <li>
+                    <a href="/src/html/abbout.html" aria-label="Sobre Nós"> Sobre Nós </a>
+                </li>
+                <li> 
+                    <a href="/src/html/contact.html" aria-label="Contatos"> Contatos </a>
+                </li>
+            </ul>
+
+        <!-- Barra de Pesquisa -->
+        <div class="search-bar-container">
+            <input type="text" class="search-bar" id="searchBar" autocomplete="off" spellcheck="off" aria-label="Barra de Pesquisa"  placeholder="Pesquise por Doces... ">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+
+        <div class="icons-container">
+            <ul>
+                <li>
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                </li>
+                <li>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-index"> 0 </span>   
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <!-- CARROSSEL DE IMAGENS -->
+        <section class="carousel-section">
+            <div class="carousel" id="carousel">
+                <!-- Slides -->
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Imagem 1 -->
+                    <div class="slide active-img">
+                        <img src="/src/assets/content/carrossel1.png" alt="Slide 1">
+                    </div>
+
+                    <!-- Imagem 2 -->
+                    <div class="slide">
+                        <img src="/src/assets/content/carrossel2.png" alt="Slide 2">
+                    </div>
+
+                    <!-- Imagem 3 -->
+                    <div class="slide">
+                        <img src="/src/assets/content/carrossel3.png" alt="Slide 3">
+                    </div>
+
+                    <!-- Imagem 4 -->
+                    <div class="slide">
+                        <img src="/src/assets/content/carrossel4.png" alt="Slide 4">
+                    </div>
+
+                    <!-- Imagem 5 -->
+                    <div class="slide">
+                        <img src="/src/assets/content/carrossel5.png" alt="Slide 5">
+                    </div>
+                </div>
+
+                <!-- Botões -->
+                <button class="carousel-btn prev" onclick="prevSlide()">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
+                <button class="carousel-btn next" onclick="nextSlide()">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Pontos Index -->
+            <div class="carousel-dots" id="dots">
+                <button class="dot active-dot" onclick="slide(0)"></button>
+                <button class="dot" onclick="slide(1)"></button>
+                <button class="dot" onclick="slide(2)"></button>
+                <button class="dot" onclick="slide(3)"></button>
+                <button class="dot" onclick="slide(4)"></button>
+            </div>
+        </section>
+        <section>
+            <!-- SUGESTÕES MAIS VENDIDAS -->
+            <article class="card-section" style="margin-top: 20px;">
+                <h2 class="section-title" aria-label="Sugestões Mais Vendidas"> Sugestões Mais Vendidas </h2>
+                <hr class="title-sub" width="25%">
+
+                <div class="products">
+                    <!-- Card 1 -->
+                    <div class="card" data-id="1">
+                        <div class="card-img">
+                            <img src="/src/assets/content/brigadeiro-maracuja.jpg" alt="Brigadeiro de Maracujá">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-name" id="cardName"> Brigadeiro de Maracujá </h3>
+                            <p class="card-creator"> Sugestão por: <span class="card-creator-account"> @ingrid28 </span></p>
+                            <div class="card-ingredients">
+                                <p> Ingredientes Adicionais: </p>
+                                <ul>
+                                    <li> Maracujá </li>
+                                    <li> Limão </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="add-cart-btn" id="addCart">
+                            Adicionar ao Carrrinho
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="card" data-id="2">
+                        <div class="card-img">
+                            <img src="/src/assets/content/laranja-uva.jfif" alt="Bolo de Uva e Laranja">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-name"> Bolo de Laranja e Uva </h3>
+                            <p class="card-creator"> Sugestão por: <span class="card-creator-account"> @flavio_silva </span></p>
+                            <div class="card-ingredients">
+                                <p> Ingredientes Adicionais: </p>
+                                <ul>
+                                    <li> Uva </li>
+                                    <li> Laranja </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="add-cart-btn" id="addCart">
+                            Adicionar ao Carrrinho
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="card" data-id="3">
+                        <div class="card-img">
+                            <img src="/src/assets/content/brownie-mel.jpg" alt="Brownie de Mel">
+                        </div>
+                        <span class="card-badge"> Desafiador </span>
+                        <div class="card-info">
+                            <h3 class="card-name" id="cardName"> Brownie de Mel </h3>
+                            <p class="card-creator"> Sugestão por: <span class="card-creator-account"> @juliaXYZ </span></p>
+                            <div class="card-ingredients">
+                                <p> Ingredientes Adicionais: </p>
+                                <ul>
+                                    <li> Mel </li>
+                                    <li> Sal </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="add-cart-btn" id="addCart">
+                            Adicionar ao Carrrinho
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="card" data-id="4">
+                        <div class="card-img">
+                            <img src="/src/assets/content/bolo-de-abacaxi-1-.jpg" alt="Bolo de Abacaxi">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-name"> Bolo de Abacaxi </h3>
+                            <p class="card-creator"> Sugestão por: <span class="card-creator-account"> @naldo_canal </span></p>
+                            <div class="card-ingredients">
+                                <p> Ingredientes Adicionais: </p>
+                                <ul>
+                                    <li> Abacaxi </li>
+                                    <li> Farinha </li>
+                                    <li> Fermento </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="add-cart-btn" id="addCart">
+                            Adicionar ao Carrrinho
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                        </button>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="card" data-id="5">
+                        <div class="card-img">
+                            <img src="/src/assets/content/mousse-ninho.avif" alt="Mousse de Ninho">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-name" id="cardName"> Mousse de Ninho </h3>
+                            <p class="card-creator"> Sugestão por: <span class="card-creator-account"> @pedupontez </span></p>
+                            <div class="card-ingredients">
+                                <p> Ingredientes Adicionais: </p>
+                                <ul>
+                                    <li> Leite em Pó </li>
+                                    <li> Leite Ninho </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button class="add-cart-btn" id="addCart">
+                            Adicionar ao Carrrinho
+                            <i class="fa-solid fa-cart-arrow-down"></i>
+                        </button>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PEDIDOS DO USUÁRIO -->
+            <article class="card-section">
+                <h2 class="section-title"> Seus Pedidos </h2>
+                <hr class="title-sub" width="10%">
+                <div class="products">
+                    <div class="card-section-empty" id="selfProductsContainer">
+                        <p class="self-off"> Ainda sem Pedidos... </p>
+                    </div>
+                </div>
+            </article>
+        </section>
+
+        <!-- BANNER -->
+        <div class="banner"style="margin-top: 20px;">
+            <div class="banner-icon">
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="banner-text">
+                <strong> Faça o Pedido do seu Doce dos Sonhos! </strong>
+                <p> Cadastre-se e entre em contato com confeiteiros da sua região.</p>
+            </div>
+            <div class="banner-right">
+                <form>
+                    <input type="text" class="banner-input" id="bannerInput" type="email" placeholder="Informe seu Email" spellcheck="false">
+                    <button type="submit" class="banner-submit-btn"> Cadastrar </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+    <div class="footer-left">
+        <div class="footer-logo">
+            <img src="/src/assets/logos/Logotipo 2.png">
+        </div>
+        <p class="footer-description">
+            A Oportunidade Perfeita para Realizar seus Desejos Doces Mais Incríveis e Malucos!
+        </p>
+
+        <!-- Sociais -->
+        <div class="footer-socials" onclick="socialMedia(0)">
+            <!-- Instagram -->
+            <div class="social-icon">
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+
+            <!-- Facebook -->
+            <div class="social-icon" onclick="socialMedia(1)">
+                <i class="fa-brands fa-facebook-f"></i>
+            </div>
+
+            <!-- Whatsapp -->
+            <div class="social-icon" onclick="socialMedia(2)">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <!-- Email -->
+            <div class="social-icon" onclick="socialMedia(3)">
+                <i class="fa-solid fa-envelope icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Links de Contato -->
+    <div>
+        <div class="footer-links-title"> Institucional </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/abbout.html"> Sobre Nós </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Contatos </a>
+            </li>
+            <li>
+                <a href="#"> Política de Privacidade </a>
+            </li>
+            <li>
+                <a href="#"> Termos de Uso </a>
+            </li>
+            <li>
+                <a href="#"> Suporte Técnico </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Links de Ajuda -->
+    <div>
+        <div class="footer-links-title"> Ajuda </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/contact.html"> Perguntas Frequentes </a>
+            </li>
+            <li>
+                <a href="#"> Central de Reclamações </a>
+            </li>
+            <li>
+                <a href="#"> Contato com Usuários </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Fale Conosco </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer-bottom">
+        <p> © 2026 Sweet Crafter™ | Todos os Direitos Reservados </p>
+    </div>
+    </footer>
+
+    <!-- Biblioteca de Icones (Font Awesome) -->
+    <script src="https://kit.fontawesome.com/43e593e5ea.js" crossorigin="anonymous"></script>
+
+    <!-- Script Próprio -->
+    <script src="/src/js/script.js" defer></script>
+    <script src="/src/js/pages.js"></script>
+    <script src="/src/js/product.js"></script>
+    <script src="/src/js/data.js"></script>
+
+    <script>
+    // Vou explicar cada coisa usando os comentários
+    // =-= CARROSSEL DE IMAGENS =-=
+
+    // Essas duas consts pegam todos os elementos com a classe condizente ao que está entre parenteses
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+
+    // Isso aqui é uma variável :p
+    let currentSlide = 0;
+
+    function updateCarousel(){
+        // Essa primeira parte da function faz com que os slides e pontos percam a classe "active", que é o que os deixa vermelhos
+        slides.forEach(slide => slide.classList.remove("active-img"));
+        dots.forEach(dot => dot.classList.remove("active-dot"));
+
+        // Essa segunda parte adiciona a classe "active" ao slide e ao ponto que coincide com o indice atual
+        slides[currentSlide].classList.add("active-img");
+        dots[currentSlide].classList.add("active-dot");
+    }
+
+    function nextSlide(){
+        // Nessa função, o valor do slide atual aumenta, e caso ultrapasse a quantidade de slides, o valor volta a ser 0
+        currentSlide++;
+        if(currentSlide >= slides.length){
+            currentSlide = 0;
+        }
+        updateCarousel();
+    }
+
+    function prevSlide(){
+        // Nessa função o contrário ocorre, diminuindo o valor do slide atual e caso seja menor que a quantidade de slides, o valor passa a ser 4 (último slide)
+        currentSlide--;
+        if(currentSlide < 0){
+            currentSlide = 4;
+        }
+        updateCarousel();
+    }
+
+    function slide(index){
+        // Aqui é a funcão das bolinhas. No html, cada function tem um index de 0 á 4, ele pega esse index no parametro index e define que, quando clicar
+        // na bolinha, o slide atual recebe o valor do index definido no Html
+        currentSlide = index;
+        updateCarousel();
+    }
+
+    // Isso gera um intervalo de 5 segundos que, quando completo, atualiza o carrossel
+    setInterval(nextSlide, 5000);
+
+
+    // =-= ABRIR PÁGINA DE PRODUTOS =-=
+    const cards = document.querySelectorAll('.card');
+    // Essa const pega todos os itens com a classe "card"
+
+    // Aqui, pra cada card da const cards, ele dá o evento de click
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const productId = Number(card.dataset.id);
+            // Essa const pega o valor do "data-id" que tá no HTML, e transforma em número
+
+            localStorage.setItem('selectedProductId', productId);
+            // Aqui ele guarda no navegador como "selectedProductId" o valor da constante criada logo acima
+
+            window.location.href = '/src/html/product.html';
+            // E depois de tudo isso, muda de página pra página do produto
+        })
+    });
+
+    // =-= CRIAR PRODUTO =-=
+    const form = document.getElementById('form');
+    // Essa const pega o formulário na página de pedidos
+
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Isso não deixa a página recarregar
+
+            const selfProductName = document.getElementById('selfProductName').value;
+            const creator = document.getElementById('selfProductCreator').value;
+            const image = document.getElementById('selfProductImage').value;
+
+            // aqui, ele pega todos os ingredientes que foram preenchidos no formulário nos inputs com nome "ingredients" e trasforma em array
+            const ingredients = Array.from(document.querySelectorAll('input[name="ingredients"]'))
+                .map(input => input.value.trim())
+                .filter(value => value !== '');
+                // O map() percorre o array criado na linha acima e pega seus valores, removendo espaços em branco com o trim()
+                // E o filter finaliza removendo espaços vazios no array, já que ele sempre tem a mesma quantidade de itens que os inputs no forms
+
+            saveProduct(selfProductName, creator, image, ingredients); // Chama a função saveProduct com os parametros equivalentes as consts criadas
+
+            window.open = '/src/html/orders.html'; // E isso troca a página pra página inicial
+        });
+    };
+
+    function saveProduct(name, creator, image, ingredients){
+        let products = JSON.parse(localStorage.getItem('products')) || [];
+
+        // Esse objeto vai levar as características dos produtos criados
+        const newProduct = {
+            id: getNextId(),
+            name,
+            creator,
+            image,
+            ingredients
+        };
+
+        products.push(newProduct); // E aqui ele joga o objeto products dentro do objeto newProduct
+
+        localStorage.setItem('products', JSON.stringify(products)); // Isso pega o objeto JSON products e transforma em string
+    };
+
+    function getNextId(){
+        const allIds = [...products, ...getSelfProducts()].map(p => p.id);
+        // Esses três pontinhos abrem os arrays que o seguem e despeja num array novo. No caso, como tem dois arrays, ele junta o valor dos dois
+        // E despeja num novo array com a quantidade de itens somada. Já o map que tem logo em seguida vai rastrear o id em cada produto p, além
+        // de retornar ele e guardar na const allIds (mto trampo só pra atribuir uma constante)
+
+        return allIds.length > 0 ? Math.max(...allIds) + 1 : 1;
+        // Esse ? é um operador condicional, como um if else. Então se lê: se o valor de allIds for maior que zero, ele rastreia o array allIds
+        // e soma um no seu valor, pra ter certeza que o ID nunca se repete, e os dois pontos são o else, que retorna 1.
+    };
+
+    const productContainer = document.getElementById('selfProductsContainer');
+
+    const selfProducts = JSON.parse(localStorage.getItem('products')) || [];
+
+    if (productContainer && selfProducts.length > 0) {
+        // Aqui, se a const productContainer e a const selfProduct tiverem tamanho maior que zero, ele remove os textos que falam que ainda não tem produtos
+        productContainer.classList.remove('card-section-empty');
+        productContainer.innerHTML = '';
+
+        // Aqui, pra cada produto pertencente a selfProduct, ele vai criar uma div que recebe card e as características dos outros cards
+        selfProducts.forEach(product => {
+            const card = document.createElement("div");
+            card.classList.add('card'); // Aqui, ele dá a tag "card" pra div recem criada
+            card.dataset.id = product.id; // Dá ao card o id do produto
+
+            // O innerHTML funciona que nem PHP das aulas da Lilian, os textos podem conter tags do HTML, variáveis, etc
+            card.innerHTML = `
+                <div class="card-img">
+                    <img src="${product.image}">
+                </div>
+
+                <div class="card-info">
+                    <h3 class="card-name">${product.name}</h3>
+                    <p class="card-creator">Sugestão por: <span class="card-creator-account"> ${product.creator} </span></p>
+                    <div class="card-ingredients">
+                    <p>Ingredientes: </p>
+                        <ul> 
+                            <li> ${product.ingredients.join(', ')} <li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            // Não consegui comentar dentro do innerHTML, mas o que preciso explicar é que aquele join() junta os itens da array ingredientes em
+            // uma string só, e coloca um espaçamento de ', ' (virgula e espaço) na string pra cada item
+
+            productContainer.appendChild(card); 
+            // O appendChild cria um elemento novo no HTML, e no caso, o elemento que ele vai criar é a const card, configurada acima
+        });
+    };
+    </script>
+</body>
+</html>

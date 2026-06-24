@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cadastro do Ecommerce">
+    <meta name="keywords" content="Cadastro, Conta, Sweet Crafter">
+    <title> Sweet Crafter | Cadastro </title>
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/src/css/forms.css">
+    <link rel="icon" type="image/png" href="/src/assets/logos/favicon_io/favicon-32x32.png">
+    <style>
+        #container{
+            width: 90%;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 20px;
+            background: var(--white);
+            box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+ 
+        /* FORMS */
+        #container h1{
+            font-family: var(--title);
+            color: var(--light_red);
+            text-align: center;
+        }
+        label{
+            margin: 20px 0;
+            font-size: 20px;
+        }
+        input:hover{
+            transform: scale(1.01) !important;
+        }
+ 
+        /* Mensagem de Erro */
+        #errorMessage{
+            display: none;
+            color: var(--light_red);
+            font-family: var(--text);
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        #errorMessage.visible{
+            display: block;
+        }
+ 
+        /* Link para Login */
+        .form-switch-link{
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-family: var(--text);
+            font-size: 14px;
+            color: var(--dark_red);
+        }
+        .form-switch-link a{
+            color: var(--light_red);
+            text-decoration: underline;
+        }
+ 
+        /* Botão de Enviar */
+        .upload-button{
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 5px;
+            background: var(--light_red);
+            color: var(--white);
+            font-family: var(--text);
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+            transition: all .5s ease;
+        }
+        .upload-button:hover{
+            transform: scale(1.03);
+            background: var(--dark_red);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- HEADER SUPERIOR -->
+        <div class="sup-header">
+            <div></div>
+            <div class="sup-header-center">
+                <h1 aria-label="Sweet Crafter" translate="no"> Sweet Crafter </h1>
+            </div>
+            <div class="sup-header-right">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-gear"></i>
+                        <a href="/src/html/settings.html" aria-label="Configurações"> Configurações </a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-user"></i>
+                        <a href="/src/html/login.html" aria-label="Sua Conta" id="accountLink"> Sua Conta </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+ 
+        <!-- HEADER INFERIOR -->
+        <div class="sub-header">
+        <nav>
+            <div class="logo-container">
+                <img src="/src/assets/logos/Logomarca.png" alt="Sweet Crafter Logo" title="Sweet Crafter Logo">
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="/src/html/index.html" aria-label="Início"> Início </a>
+                </li>
+ 
+                <!-- Lista Dropdown -->
+                <li id="dropdown-wrapper">
+                    <span class="dropdown-gate" id="dropdownGate" aria-label="Doces"> Doces </span>
+                    <div class="dropdown-container" id="dropdown">
+                        <div>
+                            <ul>
+                                <li> Bolos </li>
+                                <li> Brigadeiros </li>
+                                <li> Tortas </li>
+                                <li> Pudim </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul>
+                                <li> Brownie </li>
+                                <li> Sorvetes </li>
+                                <li> Copo da Felicidade </li>
+                                <li> Biscoitos </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+ 
+                <li>
+                    <a href="/src/html/orders.html" aria-label="Pedidos"> Pedidos </a>
+                </li>
+                <li>
+                    <a href="/src/html/abbout.html" aria-label="Sobre Nós"> Sobre Nós </a>
+                </li>
+                <li> 
+                    <a href="/src/html/contact.html" aria-label="Contatos"> Contatos </a>
+                </li>
+            </ul>
+ 
+        <!-- Barra de Pesquisa -->
+        <div class="search-bar-container">
+            <input type="text" class="search-bar" id="searchBar" autocomplete="off" spellcheck="off" aria-label="Barra de Pesquisa"  placeholder="Pesquise por Doces... ">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+ 
+        <div class="icons-container">
+            <ul>
+                <li>
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                </li>
+                <li>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-index"> 0 </span>   
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+ 
+    <main>
+        <div id="container">
+            <h1> Criar Conta </h1>
+ 
+            <p id="errorMessage"></p>
+ 
+            <!-- FORMULÁRIO -->
+            <form id="cadastroForm">
+                <!-- Nome -->
+                <label for="cadastroName"> Nome: </label>
+                <input type="text" name="name" id="cadastroName" placeholder="Seu nome completo" autocomplete="off" spellcheck="false" required>
+                <br> <br>
+ 
+                <!-- Email -->
+                <label for="cadastroEmail"> Email: </label>
+                <input type="email" name="email" id="cadastroEmail" placeholder="exemplo@gmail.com" autocomplete="off" spellcheck="false" required>
+                <br> <br>
+ 
+                <!-- Senha -->
+                <label for="cadastroPassword"> Senha: </label>
+                <input type="password" name="password" id="cadastroPassword" placeholder="Mínimo de 6 caracteres" minlength="6" autocomplete="off" required>
+                <br> <br>
+ 
+                <!-- Confirmar Senha -->
+                <label for="cadastroConfirmPassword"> Confirmar Senha: </label>
+                <input type="password" name="confirmPassword" id="cadastroConfirmPassword" placeholder="Repita a senha" minlength="6" autocomplete="off" required>
+                <br>
+ 
+                <button type="submit" class="upload-button"> Cadastrar </button>
+            </form>
+ 
+            <span class="form-switch-link">
+                Já tem uma conta? <a href="/src/html/login.html"> Faça login </a>
+            </span>
+        </div>
+    </main>
+ 
+    <!-- FOOTER -->
+    <footer>
+    <div class="footer-left">
+        <div class="footer-logo">
+            <img src="/src/assets/logos/Logotipo 2.png">
+        </div>
+        <p class="footer-description">
+            A Oportunidade Perfeita para Realizar seus Desejos Doces Mais Incríveis e Malucos!
+        </p>
+ 
+        <!-- Sociais -->
+        <div class="footer-socials" onclick="socialMedia(0)">
+            <!-- Instagram -->
+            <div class="social-icon">
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+ 
+            <!-- Facebook -->
+            <div class="social-icon" onclick="socialMedia(1)">
+                <i class="fa-brands fa-facebook-f"></i>
+            </div>
+ 
+            <!-- Whatsapp -->
+            <div class="social-icon" onclick="socialMedia(2)">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+ 
+            <!-- Email -->
+            <div class="social-icon" onclick="socialMedia(3)">
+                <i class="fa-solid fa-envelope icon"></i>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Links de Contato -->
+    <div>
+        <div class="footer-links-title"> Institucional </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/abbout.html"> Sobre Nós </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Contatos </a>
+            </li>
+            <li>
+                <a href="#"> Política de Privacidade </a>
+            </li>
+            <li>
+                <a href="#"> Termos de Uso </a>
+            </li>
+            <li>
+                <a href="#"> Suporte Técnico </a>
+            </li>
+        </ul>
+    </div>
+ 
+    <!-- Links de Ajuda -->
+    <div>
+        <div class="footer-links-title"> Ajuda </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/contact.html"> Perguntas Frequentes </a>
+            </li>
+            <li>
+                <a href="#"> Central de Reclamações </a>
+            </li>
+            <li>
+                <a href="#"> Contato com Usuários </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Fale Conosco </a>
+            </li>
+        </ul>
+    </div>
+ 
+    <div class="footer-bottom">
+        <p> © 2026 Sweet Crafter™ | Todos os Direitos Reservados </p>
+    </div>
+    </footer>
+ 
+    <!-- Biblioteca de Icones (Font Awesome) -->
+    <script src="https://kit.fontawesome.com/43e593e5ea.js" crossorigin="anonymous"></script>
+ 
+    <!-- Script Próprio -->
+    <script src="/src/js/storage.js" defer></script>
+    <script src="/src/js/ui-shared.js" defer></script>
+    <script>
+        const minPasswordLength = 6;
+ 
+        const form = document.getElementById('cadastroForm');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+        
+            const name = document.getElementById('cadastroName').value.trim();
+            const email = document.getElementById('cadastroEmail').value.trim().toLowerCase();
+            const password = document.getElementById('cadastroPassword').value;
+            const confirmPassword = document.getElementById('cadastroConfirmPassword').value;
+        
+            if (password.length < minPasswordLength) {
+                showError(`A senha precisa ter pelo menos ${minPasswordLength} caracteres.`);
+                return;
+                // Se a senha for menor que o mínimo, ativa a função de erro
+            }
+        
+            if (password !== confirmPassword) {
+                showError('As senhas não coincidem.');
+                return;
+                // Se as senhas forem diferentes, também ativa a função de erro
+            }
+        
+            if (findUserByEmail(email)) {
+                showError('Já existe uma conta cadastrada com este email.');
+                return;
+                // Se já tiver uma conta com esse email, mostra erro também
+            }
+            
+            // Se não tiver erro nenhum, ativa as functions registerUser e login
+            registerUser(name, email, password);
+            login(email);
+        
+            window.location.href = '/src/html/account.html';
+            // Por fim, muda a página pra página de conta criada
+        });
+        
+        //
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('visible');
+            // Deixa visivel a mensagem de erro, e ela recebe o valor do atributo
+        }
+    </script>
+</body>
+</html>

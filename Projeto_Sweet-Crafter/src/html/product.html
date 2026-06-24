@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Sweet Crafter | Produtos </title>
+    <meta name="author" content="Miguel Fernandes Silva">
+    <meta name="description" content="Informações de Produto">
+    <meta name="keywords" content="Título, Imagem, Ingredientes, Informações">
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="icon" type="image/png" href="/src/assets/logos/favicon_io/favicon-32x32.png">
+    <style>
+        #container{
+            width: 90%;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        .product-image img{
+            width: 100%;
+            height: 100%;
+            aspect-ratio: 16 / 9;
+            border-radius: 20px 0 0 20px;
+            border-right: 1px solid rgba(0, 0, 0, 0.5);
+        }
+        .product-infos{
+            padding: 10px;
+            cursor: default;
+            position: relative;
+        }
+        .product-title{
+            font-family: var(--title);
+            text-align: center;
+            font-size: 30px;
+        }
+        .product-creator{
+            text-align: center;
+            font-size: 15px;
+            font-family: var(--text);
+        }
+        .product-creator span{
+            color: var(--light_red);
+            text-decoration: underline;
+            cursor: pointer !important;
+        }
+        .product-difficulty{
+            max-width: fit-content;
+            text-align: center;
+            font-family: var(--text);
+            font-size: 15px;
+            color: var(--white);
+            padding: 5px 5px 5px 30px;
+            text-align: left;
+            margin-left: -10px;
+            background: var(--dark_red);
+            border-radius: 0 10px 10px 0;
+        }
+        .ingredients{
+            font-family: var(--subtitle);
+            font-weight: 600;
+            font-size: 20px;
+            margin: 10px 0;
+            letter-spacing: 1px;
+        }
+        .product-infos ul{
+            margin-left: 5%;
+            font-family: var(--text);
+        }
+        .product-infos li{
+            line-height: 1.8;
+        }
+        .add-cart-btn{
+            width: fit-content;
+            height: 40px;
+            color: var(--white);
+            font-size: 18px;
+            font-family: var(--text);
+            padding: 0 10px;
+            border-radius: 10px;
+            background: var(--light_red);
+            cursor: pointer !important;
+            box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+            transition: .3s ease;
+            position: absolute;
+            bottom: 10px;
+            left: 34%;
+        }
+        .add-cart-btn:hover{
+            background: var(--dark_red);
+        }
+
+        .banner{
+            margin: 50px auto;
+            width: 90% !important;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- HEADER SUPERIOR -->
+        <div class="sup-header">
+            <div></div>
+            <div class="sup-header-center">
+                <h1 aria-label="Sweet Crafter" translate="no"> Sweet Crafter </h1>
+            </div>
+            <div class="sup-header-right">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-gear"></i>
+                        <a href="/src/html/settings.html" aria-label="Configurações"> Configurações </a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-user"></i>
+                        <a href="/src/html/login.html" aria-label="Sua Conta" id="accountLink"> Sua Conta </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- HEADER INFERIOR -->
+        <div class="sub-header">
+        <nav>
+            <div class="logo-container">
+                <img src="/src/assets/logos/Logomarca.png" alt="Sweet Crafter Logo" title="Sweet Crafter Logo">
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="/src/html/index.html" aria-label="Início"> Início </a>
+                </li>
+
+                <!-- Lista Dropdown -->
+                <li id="dropdown-wrapper">
+                    <span class="dropdown-gate" id="dropdownGate" aria-label="Doces"> Doces </span>
+                    <div class="dropdown-container" id="dropdown">
+                        <div>
+                            <ul>
+                                <li> Bolos </li>
+                                <li> Brigadeiros </li>
+                                <li> Tortas </li>
+                                <li> Pudim </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul>
+                                <li> Brownie </li>
+                                <li> Sorvetes </li>
+                                <li> Copo da Felicidade </li>
+                                <li> Biscoitos </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/src/html/orders.html" aria-label="Pedidos"> Pedidos </a>
+                </li>
+                <li>
+                    <a href="/src/html/abbout.html" aria-label="Sobre Nós"> Sobre Nós </a>
+                </li>
+                <li> 
+                    <a href="/src/html/contact.html" aria-label="Contatos"> Contatos </a>
+                </li>
+            </ul>
+
+        <!-- Barra de Pesquisa -->
+        <div class="search-bar-container">
+            <input type="text" class="search-bar" id="searchBar" autocomplete="off" spellcheck="off" aria-label="Barra de Pesquisa"  placeholder="Pesquise por Doces... ">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+
+        <div class="icons-container">
+            <ul>
+                <li>
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                </li>
+                <li>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-index"> 0 </span>   
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <!-- Caminho da Pag -->
+    <div class="path-container">
+        <a href="/src/html/index.html" target="_self" class="path"> Início </a>
+        <p class="path"> > </p>
+        <a href="#" target="_self" class="path" style="color: #8D535A; margin-bottom: 10px;"> Produtos </a>
+    </div>
+
+    <main>
+        <div id="container">
+            <div class="product-image">
+                <img src="" alt="" id="productImage">
+            </div>
+            <div class="product-infos">
+                <h1 class="product-title" id="productName"> </h1>
+                <p class="product-creator"> Sugerido por: <span id="productCreator"></span></p>
+                <p class="product-difficulty" id="productDifficulty"></p>
+                <div class="card-ingredients">
+                    <p class="ingredients"> Ingredientes: </p>
+                    <ul id="productIngredients">
+                    </ul>
+                </div>
+                <button class="add-cart-btn" id="addCart">
+                    Adicionar ao Carrinho
+                    <i class="fa-solid fa-cart-arrow-down"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- BANNER -->
+        <div class="banner">
+            <div class="banner-icon">
+                <i class="fa-solid fa-envelope"></i>
+            </div>
+            <div class="banner-text">
+                <strong> Faça Você Também os Seus Pedidos! </strong>
+                <p> Cadastre-se e transforme seus desejos em realidade. </p>
+            </div>
+            <div class="banner-right">
+                <form>
+                    <input type="text" class="banner-input" id="bannerInput" type="email" placeholder="Informe seu Email" spellcheck="false">
+                    <button type="submit" class="banner-submit-btn"> Cadastrar </button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+    <div class="footer-left">
+        <div class="footer-logo">
+            <img src="/src/assets/logos/Logotipo 2.png">
+        </div>
+        <p class="footer-description">
+            A Oportunidade Perfeita para Realizar seus Desejos Doces Mais Incríveis e Malucos!
+        </p>
+
+        <!-- Sociais -->
+        <div class="footer-socials" onclick="socialMedia(0)">
+            <!-- Instagram -->
+            <div class="social-icon">
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+
+            <!-- Facebook -->
+            <div class="social-icon" onclick="socialMedia(1)">
+                <i class="fa-brands fa-facebook-f"></i>
+            </div>
+
+            <!-- Whatsapp -->
+            <div class="social-icon" onclick="socialMedia(2)">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <!-- Email -->
+            <div class="social-icon" onclick="socialMedia(3)">
+                <i class="fa-solid fa-envelope icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Links de Contato -->
+    <div>
+        <div class="footer-links-title"> Institucional </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/abbout.html"> Sobre Nós </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Contatos </a>
+            </li>
+            <li>
+                <a href="#"> Política de Privacidade </a>
+            </li>
+            <li>
+                <a href="#"> Termos de Uso </a>
+            </li>
+            <li>
+                <a href="#"> Suporte Técnico </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Links de Ajuda -->
+    <div>
+        <div class="footer-links-title"> Ajuda </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/contact.html"> Perguntas Frequentes </a>
+            </li>
+            <li>
+                <a href="#"> Central de Reclamações </a>
+            </li>
+            <li>
+                <a href="#"> Contato com Usuários </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Fale Conosco </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer-bottom">
+        <p> © 2026 Sweet Crafter™ | Todos os Direitos Reservados </p>
+    </div>
+    </footer>
+
+    <!-- Biblioteca de Icones (Font Awesome) -->
+    <script src="https://kit.fontawesome.com/43e593e5ea.js" crossorigin="anonymous"></script>
+
+    <!-- Script Próprio -->
+    <script src="/src/js/script.js" defer></script>
+    <script src="/src/js/data.js"></script>
+    <script src="/src/js/product.js"></script>
+</body>
+</html>

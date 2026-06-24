@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Login do Ecommerce">
+    <meta name="keywords" content="Login, Conta, Sweet Crafter">
+    <title> Sweet Crafter | Login </title>
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/src/css/forms.css">
+    <link rel="icon" type="image/png" href="/src/assets/logos/favicon_io/favicon-32x32.png">
+    <style>
+        #container{
+            width: 90%;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 20px;
+            background: var(--white);
+            box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+ 
+        /* FORMS */
+        #container h1{
+            font-family: var(--title);
+            color: var(--light_red);
+            text-align: center;
+        }
+        label{
+            margin: 20px 0;
+            font-size: 20px;
+        }
+        input:hover{
+            transform: scale(1.01) !important;
+        }
+ 
+        /* Mensagem de Erro */
+        #errorMessage{
+            display: none;
+            color: var(--light_red);
+            font-family: var(--text);
+            font-size: 14px;
+            margin: 10px 0;
+        }
+        #errorMessage.visible{
+            display: block;
+        }
+ 
+        /* Link para Cadastro */
+        .form-switch-link{
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-family: var(--text);
+            font-size: 14px;
+            color: var(--dark_red);
+        }
+        .form-switch-link a{
+            color: var(--light_red);
+            text-decoration: underline;
+        }
+ 
+        /* Botão de Enviar */
+        .upload-button{
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-radius: 5px;
+            background: var(--light_red);
+            color: var(--white);
+            font-family: var(--text);
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 5px 5px rgba(0, 0, 0, 0.2);
+            transition: all .5s ease;
+        }
+        .upload-button:hover{
+            transform: scale(1.03);
+            background: var(--dark_red);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- HEADER SUPERIOR -->
+        <div class="sup-header">
+            <div></div>
+            <div class="sup-header-center">
+                <h1 aria-label="Sweet Crafter" translate="no"> Sweet Crafter </h1>
+            </div>
+            <div class="sup-header-right">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-gear"></i>
+                        <a href="/src/html/settings.html" aria-label="Configurações"> Configurações </a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-user"></i>
+                        <a href="/src/html/login.html" aria-label="Sua Conta" id="accountLink"> Sua Conta </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+ 
+        <!-- HEADER INFERIOR -->
+        <div class="sub-header">
+        <nav>
+            <div class="logo-container">
+                <img src="/src/assets/logos/Logomarca.png" alt="Sweet Crafter Logo" title="Sweet Crafter Logo">
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="/src/html/index.html" aria-label="Início"> Início </a>
+                </li>
+ 
+                <!-- Lista Dropdown -->
+                <li id="dropdown-wrapper">
+                    <span class="dropdown-gate" id="dropdownGate" aria-label="Doces"> Doces </span>
+                    <div class="dropdown-container" id="dropdown">
+                        <div>
+                            <ul>
+                                <li> Bolos </li>
+                                <li> Brigadeiros </li>
+                                <li> Tortas </li>
+                                <li> Pudim </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul>
+                                <li> Brownie </li>
+                                <li> Sorvetes </li>
+                                <li> Copo da Felicidade </li>
+                                <li> Biscoitos </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+ 
+                <li>
+                    <a href="/src/html/orders.html" aria-label="Pedidos"> Pedidos </a>
+                </li>
+                <li>
+                    <a href="/src/html/abbout.html" aria-label="Sobre Nós"> Sobre Nós </a>
+                </li>
+                <li> 
+                    <a href="/src/html/contact.html" aria-label="Contatos"> Contatos </a>
+                </li>
+            </ul>
+ 
+        <!-- Barra de Pesquisa -->
+        <div class="search-bar-container">
+            <input type="text" class="search-bar" id="searchBar" autocomplete="off" spellcheck="off" aria-label="Barra de Pesquisa"  placeholder="Pesquise por Doces... ">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+ 
+        <div class="icons-container">
+            <ul>
+                <li>
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                </li>
+                <li>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-index"> 0 </span>   
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+ 
+    <main>
+        <div id="container">
+            <h1> Entrar na sua Conta </h1>
+ 
+            <p id="errorMessage"></p>
+ 
+            <!-- FORMULÁRIO -->
+            <form id="loginForm">
+                <!-- Email -->
+                <label for="loginEmail"> Email: </label>
+                <input type="email" name="email" id="loginEmail" placeholder="seuemail@exemplo.com" autocomplete="off" spellcheck="false" required>
+                <br> <br>
+ 
+                <!-- Senha -->
+                <label for="loginPassword"> Senha: </label>
+                <input type="password" name="password" id="loginPassword" placeholder="Sua senha" autocomplete="off" required>
+                <br>
+ 
+                <button type="submit" class="upload-button"> Entrar </button>
+            </form>
+ 
+            <span class="form-switch-link">
+                Ainda não tem conta? <a href="/src/html/checkin.html"> Cadastre-se </a>
+            </span>
+        </div>
+    </main>
+ 
+    <!-- FOOTER -->
+    <footer>
+    <div class="footer-left">
+        <div class="footer-logo">
+            <img src="/src/assets/logos/Logotipo 2.png">
+        </div>
+        <p class="footer-description">
+            A Oportunidade Perfeita para Realizar seus Desejos Doces Mais Incríveis e Malucos!
+        </p>
+ 
+        <!-- Sociais -->
+        <div class="footer-socials" onclick="socialMedia(0)">
+            <!-- Instagram -->
+            <div class="social-icon">
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+ 
+            <!-- Facebook -->
+            <div class="social-icon" onclick="socialMedia(1)">
+                <i class="fa-brands fa-facebook-f"></i>
+            </div>
+ 
+            <!-- Whatsapp -->
+            <div class="social-icon" onclick="socialMedia(2)">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+ 
+            <!-- Email -->
+            <div class="social-icon" onclick="socialMedia(3)">
+                <i class="fa-solid fa-envelope icon"></i>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- Links de Contato -->
+    <div>
+        <div class="footer-links-title"> Institucional </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/abbout.html"> Sobre Nós </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Contatos </a>
+            </li>
+            <li>
+                <a href="#"> Política de Privacidade </a>
+            </li>
+            <li>
+                <a href="#"> Termos de Uso </a>
+            </li>
+            <li>
+                <a href="#"> Suporte Técnico </a>
+            </li>
+        </ul>
+    </div>
+ 
+    <!-- Links de Ajuda -->
+    <div>
+        <div class="footer-links-title"> Ajuda </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/contact.html"> Perguntas Frequentes </a>
+            </li>
+            <li>
+                <a href="#"> Central de Reclamações </a>
+            </li>
+            <li>
+                <a href="#"> Contato com Usuários </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Fale Conosco </a>
+            </li>
+        </ul>
+    </div>
+ 
+    <div class="footer-bottom">
+        <p> © 2026 Sweet Crafter™ | Todos os Direitos Reservados </p>
+    </div>
+    </footer>
+ 
+    <!-- Biblioteca de Icones (Font Awesome) -->
+    <script src="https://kit.fontawesome.com/43e593e5ea.js" crossorigin="anonymous"></script>
+ 
+    <!-- Script Próprio -->
+    <script src="/src/js/storage.js" defer></script>
+    <script src="/src/js/ui-shared.js" defer></script>
+    <script>
+        if (isLoggedIn()) {
+            window.location.href = '/src/html/account.html';
+            // Se a função for verdadeira, muda pra página de conta já criada
+        }
+        
+        const form = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Não deixa a página atualizar
+        
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase(); // Remove espaços vazios e deixa em letra minúscula
+            const password = document.getElementById('loginPassword').value;
+        
+            const user = findUserByEmail(email);
+        
+            if (!user || user.password !== password) {
+                showError('Email ou senha incorretos.');
+                return;
+                // Se não tiver user, ou a senha for diferente da senha criada, mostra a mensagem de erro e retorna nada
+            }
+        
+            login(email);
+            window.location.href = '/src/html/account.html';
+            // Se nada estiver errado, chama a função login, configurada na página de storage e muda a página pra página de conta já criada
+        });
+        
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.classList.add('visible');
+        }
+    </script>
+</body>
+</html>

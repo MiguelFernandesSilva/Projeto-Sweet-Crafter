@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Miguel Fernandes Silva">
+    <meta name="description" content="Contato com os Operadores do Ecommerce">
+    <meta name="keywords" content="Contatos, Perguntas, Redes Sociais">
+    <title> Sweet Crafter | Contatos </title>
+    <link rel="stylesheet" href="/src/css/style.css">
+    <link rel="stylesheet" href="/src/css/forms.css">
+    <link rel="icon" type="image/png" href="/src/assets/logos/favicon_io/favicon-32x32.png">
+    <style>
+    section{
+        padding: 20px 30px;
+    }
+    h1{
+        font-family: var(--title);
+        color: var(--light_red);
+        font-size: 35px;
+        text-transform: capitalize;
+    }
+    p{
+        font-family: var(--text);
+    }
+    .cards-container{
+        width: 70%;
+        height: fit-content;
+        margin: 30px auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 30px;
+        }
+    .social-card{
+        text-align: center;
+        line-height: 1.8;
+        padding: 10px;
+        border: none;
+        border-radius: 15px;
+        background: var(--background2);
+        cursor: pointer;
+        box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.2);
+        transition: transform .3s ease;
+    }
+    .social-card:hover{
+        transform: scale(1.05);
+    }
+    .social-card div{
+        font-size: 50px;
+        color: var(--light_red);
+        line-height: 1;
+    }
+    .social-card h3{
+        color: var(--light_red);
+        font-size: 20px;
+        font-family: var(--subtitle);
+    }
+    .social-card a{
+        font-size: 14px;
+        text-decoration: none;
+        color: var(--black) !important;
+    }
+    .social-card p{
+        font-size: 12px;
+        color: var(--black) !important;
+    }
+
+    /* FORMS */
+    .form-title{
+        font-size: 25px;
+        font-family: var(--subtitle);
+        text-align: center;
+        color: var(--light_red);
+        margin-bottom: 20px;
+    }
+    .form-container{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    /* FAQ */
+    .form-right-zone{
+        background: var(--background2);
+        border: none;
+        border-radius: 20px;
+        padding: 25px 35px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        box-shadow: 5px 8px 10px rgba(0, 0, 0, 0.2);
+    }
+    .form-right-zone div{
+        width: 100%;
+        height: fit-content;
+    }
+    .form-right-zone h3{
+        font-family: var(--subtitle);
+        color: var(--container_red);
+        max-height: fit-content;
+    }
+    .form-right-zone strong{
+        color: var(--dark_red);
+        font-family: var(--subtitle);
+        text-align: left;
+    }
+    .form-right-zone p{
+        text-align: justify;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- HEADER SUPERIOR -->
+        <div class="sup-header">
+            <div></div>
+            <div class="sup-header-center">
+                <h1 aria-label="Sweet Crafter" translate="no"> Sweet Crafter </h1>
+            </div>
+            <div class="sup-header-right">
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-gear"></i>
+                        <a href="/src/html/settings.html" aria-label="Configurações"> Configurações </a>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-user"></i>
+                        <a href="/src/html/login.html" aria-label="Sua Conta" id="accountLink"> Sua Conta </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- HEADER INFERIOR -->
+        <div class="sub-header">
+        <nav>
+            <div class="logo-container">
+                <img src="/src/assets/logos/Logomarca.png" alt="Sweet Crafter Logo" title="Sweet Crafter Logo">
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="/src/html/index.html" aria-label="Início"> Início </a>
+                </li>
+
+                <!-- Lista Dropdown -->
+                <li id="dropdown-wrapper">
+                    <span class="dropdown-gate" id="dropdownGate" aria-label="Doces"> Doces </span>
+                    <div class="dropdown-container" id="dropdown">
+                        <div>
+                            <ul>
+                                <li> Bolos </li>
+                                <li> Brigadeiros </li>
+                                <li> Tortas </li>
+                                <li> Pudim </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <ul>
+                                <li> Brownie </li>
+                                <li> Sorvetes </li>
+                                <li> Copo da Felicidade </li>
+                                <li> Biscoitos </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="/src/html/orders.html" aria-label="Pedidos"> Pedidos </a>
+                </li>
+                <li>
+                    <a href="/src/html/abbout.html" aria-label="Sobre Nós"> Sobre Nós </a>
+                </li>
+                <li> 
+                    <a href="/src/html/contact.html" class="active-page" aria-label="Contatos"> Contatos </a>
+                </li>
+            </ul>
+
+        <!-- Barra de Pesquisa -->
+        <div class="search-bar-container">
+            <input type="text" class="search-bar" id="searchBar" autocomplete="off" spellcheck="off" aria-label="Barra de Pesquisa"  placeholder="Pesquise por Doces... ">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </div>
+
+        <div class="icons-container">
+            <ul>
+                <li>
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                </li>
+                <li>
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span class="cart-index"> 0 </span>   
+                </li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <!-- Caminho da Pag -->
+    <div class="path-container">
+        <a href="/src/html/index.html" target="_self" class="path"> Início </a>
+        <p class="path"> > </p>
+        <a href="#" target="_self" class="path" style="color: #8D535A"> Contatos </a>
+    </div>
+
+    <main>
+        <section>
+            <!-- CARDS DE REDES SOCIAIS -->
+                <h1> Entre em Contato </h1>
+                <p> Será um prazer falar com você! </p>
+                <div class="cards-container">
+                    <!-- Instagram -->
+                    <div class="social-card" onclick="socialMedia(0)">
+                        <div>
+                            <i class="fa-brands fa-instagram"></i>
+                        </div>
+                        <h3> Instagram </h3>
+                        <a href="https://www.instagram.com/" target="_blank" aria-label="Nosso Instagram"> @Sweet_Crafter </a>
+                        <p> Respondemos em até 12h </p>
+                    </div>
+
+                    <!-- Facebook -->
+                    <div class="social-card" onclick="socialMedia(1)">
+                        <div>
+                            <i class="fa-brands fa-facebook"></i>
+                        </div>
+                        <h3> Facebook </h3>
+                        <a href="https://www.facebook.com/?locale=pt_BR" target="_blank" aria-label="Nosso Facebook"> @Sweet_Crafter_Of </a>
+                        <p> Respondemos em até 12h </p>
+                    </div>
+
+                    <!-- Whatsapp -->
+                    <div class="social-card" onclick="socialMedia(2)">
+                        <div>
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </div>
+                        <h3> WhatsApp </h3>
+                        <a href="https://web.whatsapp.com/" target="_blank" aria-label="Nosso Instagram"> (11) 98765-4321 </a>
+                        <p> Seg. a Sex. das 8h as 18h </p>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="social-card" onclick="socialMedia(3)">
+                        <div>
+                            <i class="fa-solid fa-envelope icon" alt="Email"></i>
+                        </div>
+                        <h3> Email </h3>
+                        <a href="https://mail.google.com/mail/u/0/" target="_blank" aria-label="Nosso Instagram"> sweet_crafter@gmail.com </a>
+                        <p> Respondemos em até 24h </p>
+                    </div>
+                </div>
+        </section>
+
+        <!-- FORMULÁRIO -->
+        <section>
+            <h2 class="form-title"> Envie Perguntas </h2>
+            <div class="form-container">
+                <div class="form-left-zone">
+                    <form>
+                        <label for="name"> Nome </label>
+                        <input type="text" name="nome" id="name" placeholder="Seu Nome Completo" dir="ltr" autocomplete="off" spellcheck="false" required>
+                        <br> <br>
+                        <label for="email"> Email </label>
+                        <input type="email" name="email" id="name" placeholder="exemplo@gmail.com" dir="ltr" autocomplete="off" spellcheck="false" required>
+                        <br> <br>
+                        <label for="about"> Assunto </label>
+                        <br>
+                        <select name="about" required>
+                            <option> Preços </option>
+                            <option> Ingredientes </option>
+                            <option> Pedidos </option>
+                            <option> Entrega </option>
+                            <option> Confeiteiros </option>
+                            <option> Outro </option>
+                        </select>
+                        <br> <br>
+                        <label for="textarea"> Sua Pergunta </label>
+                        <br>
+                        <textarea name="textarea" placeholder="Escreva sua Pergunta Aqui" minlength="30" required></textarea>
+                        <button type="submit" class="submit-btn"> Enviar </button>
+                    </form>
+                </div>
+                <div class="form-right-zone">
+                    <h3> Dúvidas Frequentes </h3>
+                    <div>
+                        <strong> Como funcionam as entregas? </strong>
+                        <p> Ao fazer um pedido, nosso sistema recomenda ele para confeiteiros localizados na sua região, que podem entrar em contato com 
+                            você e combinar o meio de entrega.
+                        </p>
+                    </div>
+                    <div>
+                        <strong> Como estipular os preços? </strong>
+                        <p> Quando se cria um pedido novo, pode-se expecificar uma faixa de preço que se dispõe a pagar. Confeiteiros que estejam de
+                            acordo com essa faixa de preço serão preferencia para entrar em contato com você.
+                        </p>
+                    </div>
+                    <div>
+                        <strong> Como saber se um confeiteiro é confiável? </strong>
+                        <p> Os confeiteiros podem ser avaliados e receber feedbacks. Ao fazer um pedido, o cliente pode analisar as classificações do 
+                            confeiteiro para ter mais chances de receber um bom produto. Além disso, é possível denunciar confeiteiros e usuários caso
+                            enfrente algum problema.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+    <div class="footer-left">
+        <div class="footer-logo">
+            <img src="/src/assets/logos/Logotipo 2.png">
+        </div>
+        <p class="footer-description">
+            A Oportunidade Perfeita para Realizar seus Desejos Doces Mais Incríveis e Malucos!
+        </p>
+
+        <!-- Sociais -->
+        <div class="footer-socials">
+            <!-- Instagram -->
+            <div class="social-icon" onclick="socialMedia(0)">
+                <i class="fa-brands fa-instagram"></i>
+            </div>
+
+            <!-- Facebook -->
+            <div class="social-icon" onclick="socialMedia(1)">
+                <i class="fa-brands fa-facebook-f"></i>
+            </div>
+
+            <!-- Whatsapp -->
+            <div class="social-icon" onclick="socialMedia(2)">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+
+            <!-- Email -->
+            <div class="social-icon" onclick="socialMedia(3)">
+                <i class="fa-solid fa-envelope icon"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Links de Contato -->
+    <div>
+        <div class="footer-links-title"> Institucional </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/abbout.html"> Sobre Nós </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Contatos </a>
+            </li>
+            <li>
+                <a href="#"> Política de Privacidade </a>
+            </li>
+            <li>
+                <a href="#"> Termos de Uso </a>
+            </li>
+            <li>
+                <a href="#"> Suporte Técnico </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Links de Ajuda -->
+    <div>
+        <div class="footer-links-title"> Ajuda </div>
+        <ul class="footer-links">
+            <li>
+                <a href="/src/html/contact.html"> Perguntas Frequentes </a>
+            </li>
+            <li>
+                <a href="#"> Central de Reclamações </a>
+            </li>
+            <li>
+                <a href="#"> Contato com Usuários </a>
+            </li>
+            <li>
+                <a href="/src/html/contact.html"> Fale Conosco </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="footer-bottom">
+        <p> © 2026 Sweet Crafter™ | Todos os Direitos Reservados </p>
+    </div>
+    </footer>
+
+    <!-- Biblioteca de Icones (Font Awesome) -->
+    <script src="https://kit.fontawesome.com/43e593e5ea.js" crossorigin="anonymous"></script>
+
+    <!-- Script Próprio -->
+    <script src="/src/js/script.js" defer></script>
+    <script src="/src/js/pages.js"></script>
+</body>
+</html>
