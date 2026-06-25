@@ -1,0 +1,12 @@
+{
+   "name": "sweet-crafter",
+   "version": "1.0.0",
+   "description": "Um ecommerce onde usuários podem criar pedidos de doces customizaveis",
+   "main": "index.html",
+   "scripts": {
+      "start": "line-server",
+      "lint": "eslint ."
+   },
+   "author": "Miguel Fernandes Silva",
+   "license": "MIT"
+}
